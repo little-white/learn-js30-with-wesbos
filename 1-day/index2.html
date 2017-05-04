@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html,
+    body,
+    div,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul,
+    li {
+        list-style: none;
+    }
+    
+    body {
+        padding: 50px;
+    }
+    
+    .main-list > li {
+        border: 2px solid #999;
+        float: left;
+        width: 60px;
+        height: 360px;
+        background: linear-gradient(180deg, #eee, #eee 70%, #bfbfbf);
+    }
+    
+    .main-list > li:active,
+    .main-list > li.active {
+        box-shadow: inset 0 0 10px #5f5d61;
+        border: 2px solid #999;
+        height: 358px;
+    }
+    
+    .main-list > li:not(:first-child) {
+        border-left: none;
+    }
+    
+    .main-list ul {
+        position: absolute;
+        padding: 0 45px;
+    }
+    
+    .main-list ul li:not(:last-child) {
+        float: left;
+        margin-right: 26px;
+        width: 36px;
+        height: 200px;
+        background: linear-gradient(180deg, #535353, #535353 30%, #030303);
+    }
+    
+    .main-list ul li:active,
+    .main-list ul li.active {
+        height: 196px;
+    }
+    
+    .main-list ul li:nth-child(1),
+    .main-list ul li:nth-child(4),
+    .main-list ul li:nth-child(6),
+    .main-list ul li:nth-child(8),
+    .main-list ul li:nth-child(11),
+    .main-list ul li:nth-child(13),
+    .main-list ul li:nth-child(14),
+    .main-list ul li:nth-child(17) {
+        visibility: hidden;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="main-list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </ul>
+    <audio src="sounds/1.mp3">1</audio>
+    <audio src="sounds/2.mp3">2</audio>
+    <audio src="sounds/3.mp3">3</audio>
+    <audio src="sounds/4.mp3">4</audio>
+    <audio src="sounds/5.mp3">5</audio>
+    <audio src="sounds/6.mp3">6</audio>
+    <audio src="sounds/7.mp3">7</audio>
+    <audio src="sounds/8.mp3">8</audio>
+    <audio src="sounds/9.mp3">9</audio>
+    <audio src="sounds/1.mp3">1</audio>
+    <audio src="sounds/2.mp3">2</audio>
+    <audio src="sounds/3.mp3">3</audio>
+    <audio src="sounds/4.mp3">4</audio>
+    <audio src="sounds/5.mp3">5</audio>
+    <audio src="sounds/6.mp3">6</audio>
+    <audio src="sounds/7.mp3">7</audio>
+    <audio src="sounds/8.mp3">8</audio>
+    <audio src="sounds/9.mp3">9</audio>
+    <audio src="sounds/1.mp3">1</audio>
+    <audio src="sounds/2.mp3">2</audio>
+    <audio src="sounds/3.mp3">3</audio>
+    <audio src="sounds/4.mp3">4</audio>
+    <audio src="sounds/5.mp3">5</audio>
+    <audio src="sounds/6.mp3">6</audio>
+    <audio src="sounds/7.mp3">7</audio>
+    <audio src="sounds/8.mp3">8</audio>
+    <audio src="sounds/9.mp3">9</audio>
+    <script>
+    var audioAll = document.querySelectorAll('audio');
+    var mainLiAll = document.querySelectorAll('.main-list > li');
+    document.addEventListener('keydown', function(e) {
+        var keyCode = e.keyCode;
+
+        if (keyCode <= 90 && keyCode >= 65) {
+
+            audioAll[keyCode - 65].currentTime = 0;
+            audioAll[keyCode - 65].play();
+            mainLiAll[keyCode - 65].className = 'active';
+        }
+
+    })
+    document.addEventListener('keyup', function(e) {
+        var keyCode = e.keyCode;
+        Array.prototype.slice.apply(mainLiAll).map(function(li) {
+            li.className = '';
+        })
+
+        if (keyCode <= 90 && keyCode >= 65) {
+            mainLiAll[keyCode - 65].className = '';
+        }
+
+    })
+    for (var i = 0, len = mainLiAll.length; i < len; i++) {
+
+        (function(index) {
+            mainLiAll[i].onclick = function() {
+                audioAll[index].currentTime = 0;
+                audioAll[index].play();
+                audioAll[index].className = 'active';
+            }
+        })(i);
+
+    }
+    </script>
+</body>
+
+</html>

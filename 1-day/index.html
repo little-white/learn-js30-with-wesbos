@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html,
+    body,
+    div,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        display: flex;
+        align-items: center;
+    }
+    
+    ul,
+    li {
+        list-style: none;
+    }
+    
+    ul {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+    }
+    
+    li {
+        flex: 1;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #326bec;
+        border: 3px solid #15f3c0;
+        margin-right: 10px;
+        color: #fff;
+        font-size: 20px;
+        transition: transform .3s ease;
+    }
+    
+    li.active {
+        transform: scale(1.1);
+    }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>boom</li>
+        <li>clap</li>
+        <li>hihat</li>
+        <li>kick</li>
+        <li>openhat</li>
+        <li>ride</li>
+        <li>snare</li>
+        <li>tink</li>
+        <li>tom</li>
+    </ul>
+    <audio src="sounds/boom.wav">boom</audio>
+    <audio src="sounds/clap.wav">clap</audio>
+    <audio src="sounds/hihat.wav">hihat</audio>
+    <audio src="sounds/kick.wav">kick</audio>
+    <audio src="sounds/openhat.wav">openhat</audio>
+    <audio src="sounds/ride.wav">ride</audio>
+    <audio src="sounds/snare.wav">snare</audio>
+    <audio src="sounds/tink.wav">tink</audio>
+    <audio src="sounds/tom.wav">tom</audio>
+    <script>
+    document.addEventListener('keydown', function(e) {
+        var keyCode = e.keyCode;
+        var audioAll = document.querySelectorAll('audio');
+        var liAll = document.querySelectorAll('li');
+        console.log(audioAll);
+        Array.prototype.slice.apply(liAll).map(function(li) {
+            li.className = '';
+        })
+
+        if (keyCode <= 57 && keyCode >= 49) {
+
+            audioAll[keyCode - 49].currentTime = 0;
+            audioAll[keyCode - 49].play();
+            liAll[keyCode - 49].className = 'active';
+
+            audioAll[keyCode - 49].onended = function() {
+                liAll[keyCode - 49].className = '';
+            }
+        }
+
+    })
+    </script>
+</body>
+
+</html>
